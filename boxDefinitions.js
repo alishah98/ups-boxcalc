@@ -57,11 +57,12 @@ const boxSizes = [
 
 // Function to validate box definitions
 function validateBoxDefinitions(boxes) {
+  const MAX_DIMENSION_VALUE = 1000;
   return boxes.every(box => 
-    box.name && 
+    typeof box.name === 'string' && box.name.trim() !== '' &&
     Array.isArray(box.dimensions) && 
     box.dimensions.length === 3 && 
-    box.dimensions.every(dim => typeof dim === 'number' && dim > 0)
+    box.dimensions.every(dim => typeof dim === 'number' && dim > 0 && dim <= MAX_DIMENSION_VALUE)
   );
 }
 
