@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Box Size Calculator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <META NAME="robots" CONTENT="noindex,nofollow">
+  <link rel="stylesheet" type="text/css" href="./bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./styles.css">
+  <!-- Add SheetJS for Excel handling -->
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.1/package/dist/xlsx.full.min.js"></script>
+</head>
+
+<body>
+  <div class="container mx-auto mt-5">
+    <div class="row">
+      <div class="col-12 col-md-5">
+        <div class="card h-100">
+          <div class="card-body d-flex flex-column align-items-center">
+            <h1 class="fs-4 mb-4">Calculate Box Sizes</h1>
+            <div id="input-section">
+              <div class="d-flex align-items-center">
+                <label for="length" class="form-label mt-1">Length</label>
+                <input type="tel" id="length" class="text-center" maxlength="2" required>
+                <span>inches</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <label class="form-label mt-1 me-2" for="width">Width</label>
+                <input type="tel" id="width" class="text-center" maxlength="2" required>
+                <span>inches</span>
+              </div>
+              <div class="d-flex align-items-center">
+                <label class="form-label mt-1" for="height">Height</label>
+                <input type="tel" id="height" class="text-center" maxlength="2" required>
+                <span>inches</span>
+              </div>
+            </div>
+            <div class="d-flex align-item-center my-3">
+              <button class="btn btn-primary mx-3" id="recommend-button">Calculate Box</button>
+              <button class="btn btn-secondary" id="reset-button">Reset</button>
+            </div>
+            <p class="pt-3">Add extra cushion</p>
+            <div class="d-flex justify-content-around pb-3">
+              <button class="btn btn-outline-primary btn-sm ms-2" id="cushion-0">0 inch</button>
+              <button class="btn btn-outline-primary btn-sm ms-2" id="cushion-2">2 inches</button>
+              <button class="btn btn-outline-primary btn-sm ms-2" id="cushion-4">4 inches</button>
+              <button class="btn btn-outline-primary btn-sm ms-2" id="cushion-6">6 inches</button>
+            </div>
+            
+            <!-- Box Definitions Management -->
+            <div class="mt-4 w-100">
+              <h5 class="fs-6 mb-3">Box Definitions</h5>
+              <div class="d-flex flex-column gap-2">
+                <div class="d-flex align-items-center gap-2">
+                  <input type="file" id="box-file-input" class="form-control form-control-sm" accept=".json,.csv,.xlsx">
+                  <button class="btn btn-outline-primary btn-sm" id="upload-button">Upload</button>
+                </div>
+                <div class="d-flex gap-2">
+                  <button class="btn btn-outline-secondary btn-sm" id="download-json">Download as JSON</button>
+                  <button class="btn btn-outline-secondary btn-sm" id="download-csv">Download as CSV</button>
+                  <button class="btn btn-outline-secondary btn-sm" id="download-xlsx">Download as Excel</button>
+                </div>
+                <div class="d-flex gap-2 mt-2">
+                  <button class="btn btn-outline-info btn-sm" id="save-github">Save to GitHub</button>
+                  <button class="btn btn-outline-info btn-sm" id="load-github">Load from GitHub</button>
+                </div>
+                <div id="github-status" class="mt-2 small text-muted"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-footer fw-bold text-center" id="output-section">
+            <p class="mt-2 fs-5" id="output"></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-7 mt-md-0 mt-3">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="row d-flex align-items-center">
+              <div class="col-12 col-md-7 lh-lg">
+                <h3>How do you measure a box?</h3>
+                <ul>
+                  <li>The first dimension to measure is <strong>length</strong>. Length is always the longest side of
+                    the box that has a flap.</li>
+                  <li>The next dimension is <strong>width</strong>. The width side also has a flap, but is always the
+                    side shorter than the length.</li>
+                  <li>Measure the <strong>height</strong> of the package. Height is the only dimension without a flap.
+                    Measure the standing side of the box from top to bottom. The height measurement does not include
+                    flaps.</li>
+                </ul>
+              </div>
+              <div class="col-12 col-md-5">
+                <img
+                  src="https://www.ups.com/assets/resources/webcontent/images/shipment-size-weight-measure-package-B-1224353-Q421.jpg"
+                  class="img-fluid" alt="">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+
+</html>
